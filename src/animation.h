@@ -12,18 +12,8 @@ namespace Animation
         int height;
     };
 
-    struct AnimationData
-    {
-        int frames;
-        int width;
-        int height;
-        // int frame[128*128] = {0};
-    };
-
     // The loaded spritesheet.
     AnimHeader header = {.frames = 8, .width = 128, .height = 128};
-
-    // AnimationData animation =  {.frames = 1, .width = 128, .height = 128};
 
     int currentFrame = 0;
     int framebuffer[128 * 128];
