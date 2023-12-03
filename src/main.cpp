@@ -34,8 +34,10 @@ void loop()
     if (WiFi.status() == WL_CONNECTED)
     {
       HTTPClient http;
+
       // Your Domain name with URL path or IP address with path
       http.begin(REQUEST_ENDPOINT);
+      ;
       // Send HTTP GET request
       int httpResponseCode = http.GET();
       if (httpResponseCode > 0)
@@ -43,6 +45,7 @@ void loop()
         WiFiClient stream = http.getStream();
         // Needed to skip to valid data. Newline is part of HTTP spec
         // Something isn't right here...
+
         stream.readStringUntil('\n');
         Animation::loadFromStream(stream);
       }

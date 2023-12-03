@@ -12,10 +12,21 @@ namespace Animation
         int height;
     };
 
+    struct AnimationData
+    {
+        int frames;
+        int width;
+        int height;
+        // int frame[128*128] = {0};
+    };
+
     // The loaded spritesheet.
-    AnimHeader header = {.frames = 1, .width = 128, .height = 128};
+    AnimHeader header = {.frames = 8, .width = 128, .height = 128};
+
+    // AnimationData animation =  {.frames = 1, .width = 128, .height = 128};
+
     int currentFrame = 0;
-    int framebuffer[128 * 128] = {};
+    int framebuffer[128 * 128];
 
     int lastAnimFrame = 0;
 
@@ -43,25 +54,34 @@ namespace Animation
         }
     }
 
-    void loadFromStream(WiFiClient stream) {
-       AnimHeader newHeader = {.frames = 0, .width = 0, .height = 0};
+    void loadFromStream(WiFiClient stream)
+    {
+        AnimHeader newHeader = {.frames = 0, .width = 0, .height = 0};
         stream.readBytes((char *)&newHeader, sizeof(newHeader));
         if (newHeader.frames == 0 || newHeader.width == 0 || newHeader.height == 0)
         {
-          return;
+            return;
         }
 
         Animation::header = newHeader;
-
         // Split the read so we can update the animation.
-        for (int y = 0; y < header.height; y++)
+        // Pretty sure chunked encoding is causing the occasional messed up pixel.
+        // Need to copy code from HTTPClient.cpp to handle different encoding types or find a way
+        // to force identity encoding.
+        // ...or simply TODO: get interrupt driven updates working...
+        int index = 0;
+        int rdms = millis();
+        while ((index < (header.width * header.height * 4)) && millis() - rdms < 1000)
         {
-          stream.readBytes((char *)&framebuffer[y * header.width], header.height * 4);
-          checkAnim();
+            index += stream.readBytes((char *)&framebuffer + index, 16);
+            delay(1);
+            checkAnim();
         }
     }
 
-    void loop() {
+    void loop()
+    {
         checkAnim();
     }
+
 }
