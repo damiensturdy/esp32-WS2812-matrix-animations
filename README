@@ -17,7 +17,7 @@ No security implemented at this time- you'll want to protect your PHP endpoint.
 
 1) Deploy web assets. Upload the content of "webroot" to your server.
 2) Open main.cpp and insert your network details and endpoint 
-    (endpoint is the location of the "server" folder above)
+    (endpoint is the deployed location of "matrix.php")
 3) Open graphics.h and configure your LEDs. You might need to set porch to 0.
     (Currently this is configured for my DIY matrix, which has 18 pixels per row with 16 usable)
 4) Upload the project to your ESP32, which will stard polling your endpoint and playing animations!
