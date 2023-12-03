@@ -1,0 +1,92 @@
+button {
+    background-color: #04AA6D;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    margin: 4px;    
+    border-radius: 4px;
+    min-width: 32px;
+    min-height: 2vh;
+    box-sizing: border-box;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+html {
+
+}
+
+input {
+    margin:4px;
+    zoom: 1.5;
+}
+
+*::-webkit-scrollbar {
+    background-color: transparent;
+    width: 15px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 4px solid transparent;
+    background-color: goldenrod;
+    background-clip: content-box;
+  }
+
+#frameButtons {
+    display: inline-block; white-space: nowrap;
+    overflow-x: scroll;
+    width: 100%;
+
+}
+
+p {
+    margin: 8px;    
+}
+
+#animName {
+    width: 70%;
+}
+
+#frameCount, #currentFrame {
+    width:20%;
+}
+
+body {
+    overflow: hidden;
+    max-height: 100vh;
+    margin: 0px;
+    background-color: black;
+    color: white;
+}
+
+@media (resolution >= 2dppx) {
+    #ui {
+        text-align: center;
+        max-width: 50vw;
+        zoom: 2;
+    }    
+} 
+
+@media (resolution >= 3dppx) {
+    #ui {
+        text-align: center;
+        max-width: 33.333vw;
+        zoom: 3;
+    }    
+} 
+
+#content {
+    background-color: black;
+    width: 100vw;
+    height: 67vh;
+    overflow: hidden;
+    margin: 0px auto;
+    text-align: center;
+}

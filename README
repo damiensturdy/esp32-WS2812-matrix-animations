@@ -1,0 +1,27 @@
+# esp32-WS2812-matrix-animations
+
+ESP32 platformio project to edit and play animations on "neopixel" WS2811, WS2812 etc pixel displays.
+16x16 matrix by default, which pulls from a 128x128 "framebuffer" for a potential 64-frame animation.
+
+Uses fastLED library to drive pixels.
+
+Contains a server-side component, platformio project and rudimentary javascript-based sprite editor.
+
+Currently requires a server with PHP support to store pixels.
+
+ESP32 -> matrix.php <- javascript editor.
+
+No security implemented at this time- you'll want to protect your PHP endpoint.
+
+# Instructions
+
+1) Deploy web assets. Upload the content of "webroot" to your server.
+2) Open main.cpp and insert your network details and endpoint 
+    (endpoint is the location of the "server" folder above)
+3) Open graphics.h and configure your LEDs. You might need to set porch to 0.
+    (Currently this is configured for my DIY matrix, which has 18 pixels per row with 16 usable)
+4) Upload the project to your ESP32, which will stard polling your endpoint and playing animations!
+
+# Editor
+
+The editor is pretty simple. You must name an animation for it to save and play, so type a name in and start drawing!

@@ -1,0 +1,38 @@
+<head>
+    <script src="editor/libs/jquery-3.7.1.min.js"></script>
+    <script src="editor/colours.js"></script>
+    <script src="editor/buttons.js"></script>
+    <script src="https://pixijs.download/release/pixi.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="root">
+
+        <div id="content"></div>
+        <div id="ui" style="text-align: center; width:100vw;">
+            <button onclick="copyFrame()">Copy</button>
+            <button onclick="pasteFrame()">Paste</button>
+            <button onclick="pickColour()">Pick</button>
+            <br>
+            Shift:
+            <button onclick="shiftImage(0,-1);">up</button>
+            <button onclick="shiftImage(0,1);">down</button>
+            <button onclick="shiftImage(-1,0);">left</button>
+            <button onclick="shiftImage(1,0);">right</button>
+            <br>
+
+            Name:<input type="text" value="matrix" id="animName" name="name"> <br>
+            Frame:<input type="number" value="1" id="currentFrame" name="currentFrame" min="1" max="64" />
+            /<input type="number" value="8" id="frameCount" name="frames" min="1" max="64" />
+            <br>
+
+            <div id="frameButtons">
+            </div>
+        </div>
+    </div>
+
+</body>
+<extra>
+    <script src="editor/main.js"> </script>
+</extra>
