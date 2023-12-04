@@ -63,7 +63,7 @@ namespace Animation
         int rdms = millis();
         while ((index < (header.width * header.height * 4)) && millis() - rdms < 1000)
         {
-            index += stream.readBytes((char *)&framebuffer + index, 16);
+            index += stream.readBytes((char *)&framebuffer + index, header.width);
             delay(1);
             checkAnim();
         }
