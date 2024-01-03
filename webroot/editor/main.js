@@ -26,19 +26,10 @@ const GRID_HEIGHT = GRID_WIDTH;
 const CELL_WIDTH = GRID_WIDTH / LARGEST_SIZE;
 const CELL_HEIGHT = GRID_HEIGHT / LARGEST_SIZE;
 
-//  Palette characteristics
-const PALETTE_COLS = 24;
-const PALETTE_ROWS = 8;
-const PALETTE_CELL_WIDTH = GRID_WIDTH / PALETTE_COLS;
-const PALETTE_CELL_HEIGHT = PALETTE_CELL_WIDTH/1.2;
-
 let grid = new PIXI.Graphics();
-let palette = new PIXI.Graphics();
 
-// Lazy global properties
-let selectedColor = 0xff
 let mouseState = 0;
-// Location of current sprite within spritesheet
+
 let offsetX = 0;
 let offsetY = 0;
 
@@ -47,11 +38,22 @@ let erasing = 0;
 // Colour picking
 let pickMode = 0;
 
-// Palette data
-let colours = [];
-
 // Scratchpad - used for copying frames
 let copyData = [];
+
+//  Palette characteristics
+const PALETTE_COLS = 24;
+const PALETTE_ROWS = 8;
+const PALETTE_CELL_WIDTH = (CANVAS_WIDTH - 2) / PALETTE_COLS;
+const PALETTE_CELL_HEIGHT = PALETTE_CELL_WIDTH/1.2;
+
+var palette = new PIXI.Graphics();
+
+// Lazy global properties
+let selectedColor = 0xff
+// Location of current sprite within spritesheet
+// Palette data
+let colours = [];
 
 // Generate palette
 let index = 0;
@@ -76,6 +78,7 @@ for (var y = 0; y < paly; y++) {
         index++;
     }
 }
+
 
 // Basic url processing- look for anim, store it.
 let paramString = location.href.split('?')[1];
@@ -219,7 +222,7 @@ function postData(data) {
         anim: anim,
         data: ([frames, WIDTH, HEIGHT].concat(data)).toString()
     }, function (response) {
-        getData();
+        // maybe call getData();
     });
 }
 
